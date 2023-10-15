@@ -56,6 +56,12 @@ The attached figures show the sequence-number trace and its zoomed-in view. The 
 \label{fig:zoomed_trace}
 \end{figure}
 
+The client was able to extract the entire file (880000 bytes) in close to 5 seconds with the total penalty being 2 and the MD5 hash was confirmed by the server.
+\newline
+
+
+Several requests were skipped by the server as seen in the server logs. The client was able to detect this and re-request the skipped packets.
+
 \section{Conclusion}
 The client was able to reliably receive data from the server by retransmitting requests when necessary and adjusting the request rate to avoid overwhelming the server. The generated graphs provided insights into the client-server interaction dynamics and the reliability mechanisms in place.
 
