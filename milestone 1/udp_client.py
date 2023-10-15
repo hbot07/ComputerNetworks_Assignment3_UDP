@@ -137,3 +137,5 @@ plt.title("Zoomed in sequence-number trace")
 plt.grid()
 plt.savefig("Zoomed in sequence-number trace.jpeg")
 plt.show()
+
+print(graph_time_recv, graph_offset_recv, graph_time_send, graph_offset_send)
