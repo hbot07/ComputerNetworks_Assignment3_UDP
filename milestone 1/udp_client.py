@@ -1,4 +1,3 @@
-
 import socket
 import hashlib
 import matplotlib.pyplot as plt
@@ -34,14 +33,13 @@ while True:
         msg = msgFromServer[0].decode()
         print(msg)
         brokenmessage = msg.split("\n")
-        if(brokenmessage[len(brokenmessage)-1] == "" and brokenmessage[len(brokenmessage)-2] == ""):
+        if(brokenmessage[-1] == "" and brokenmessage[-2] == ""):
             if (brokenmessage[0][:4] == "Size"):
                 totalsize = int(brokenmessage[0][6:])
         break
     except TimeoutError:
         time.sleep(0.2)
         UDPClientSocket.sendto(str.encode("SendSize\nReset\n\n"), serverAddressPort)
-        #tries += 1
 
 
 counter  = 0
@@ -53,8 +51,8 @@ graph_offset_send = []
 graph_time_send = []
 
 while counter < totalsize:
-
-    UDPClientSocket.sendto(str.encode("Offset: "+str(counter)+"\nNumBytes: "+str(min(1448,totalsize - counter))+"\n\n"), serverAddressPort)
+    UDPClientSocket.sendto(str.encode("Offset: "+str(counter)+"\nNumBytes: "
+                                      +str(min(1448, totalsize - counter))+"\n\n"), serverAddressPort)
     graph_offset_send.append(counter)
     graph_time_send.append(time.perf_counter() - t0)
     while True:
@@ -137,5 +135,3 @@ plt.title("Zoomed in sequence-number trace")
 plt.grid()
 plt.savefig("Zoomed in sequence-number trace.jpeg")
 plt.show()
-
-print(graph_time_recv, graph_offset_recv, graph_time_send, graph_offset_send)
