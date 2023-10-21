@@ -56,15 +56,18 @@ if __name__ == "__main__":
     # Fetch data in chunks
     offset = 0
     CHUNK_SIZE = 1448
-    received_data = []
+    received_data = [None for i in range(0, total_size, CHUNK_SIZE)]
 
-    while offset < total_size:
-        data_chunk = get_data_from_server(offset, min(CHUNK_SIZE, total_size-offset))
-        if data_chunk:
-            received_data += data_chunk
-            offset += min(CHUNK_SIZE, total_size-offset)
-            assert offset == len(received_data)
+    def get_data_one_pass():
+        for offset in range(0, total_size, CHUNK_SIZE):
+            data_chunk = get_data_from_server(offset, min(CHUNK_SIZE, total_size-offset))
+            if data_chunk:
+                received_data[offset//CHUNK_SIZE] = data_chunk
+                offset += min(CHUNK_SIZE, total_size-offset)
 
+    get_data_one_pass()
+
+    received_data = "".join(received_data)
     print(f"Received {len(received_data)}/{total_size} bytes of data.")
 
 
