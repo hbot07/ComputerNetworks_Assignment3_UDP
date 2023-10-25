@@ -6,7 +6,7 @@ import pickle
 start_time = time.time()
 
 # Constants
-SERVER_IP = '127.0.0.1'
+SERVER_IP = '10.17.7.134'
 SERVER_PORT = 9801
 BUFFER_SIZE = 2048
 TIMEOUT = 0.008  # Timeout in seconds
