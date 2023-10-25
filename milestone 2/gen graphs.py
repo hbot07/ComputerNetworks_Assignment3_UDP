@@ -1,4 +1,4 @@
-NAME = "constant burst size 10"
+NAME = "AIMD vayu"
 import pickle
 
 import matplotlib.pyplot as plt
@@ -43,6 +43,7 @@ plt.figure(figsize=(10, 5), dpi=150)
 plt.plot([i[1] for i in graph_burst_send], [i[0] for i in graph_burst_send], "-o", color='blue')
 plt.xlabel("Time")
 plt.ylabel("Burst Size")
+plt.title
 
 # Create a twin of the original y-axis
 ax2 = plt.gca().twinx()

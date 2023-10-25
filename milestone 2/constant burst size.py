@@ -9,9 +9,9 @@ start_time = time.time()
 SERVER_IP = '127.0.0.1'
 SERVER_PORT = 9801
 BUFFER_SIZE = 2048
-TIMEOUT = 0.025  # Timeout in seconds
+TIMEOUT = 0.016
 MAX_RETRIES = 5
-batch_size = 10
+batch_size = 5
 
 graph_send = []
 graph_rcv = []

@@ -9,7 +9,7 @@ start_time = time.time()
 SERVER_IP = '127.0.0.1'
 SERVER_PORT = 9801
 BUFFER_SIZE = 2048
-TIMEOUT = 0.025  # Timeout in seconds
+TIMEOUT = 0.008  # Timeout in seconds
 MAX_RETRIES = 5
 batch_size = 4
 
@@ -64,7 +64,7 @@ def receive_data(received_data):
         return 0
 
 def get_data_one_pass():
-    global batch_size
+    global batch_size, TIMEOUT
 
     sent, rcvd = 0, 0
     # send reqs
@@ -86,8 +86,10 @@ def get_data_one_pass():
 
     if sent == rcvd:
         batch_size += 1
+        TIMEOUT /= 2
     else:
         batch_size = max(batch_size//2, 1)
+        TIMEOUT += 0.001
 
 
 if __name__ == "__main__":
