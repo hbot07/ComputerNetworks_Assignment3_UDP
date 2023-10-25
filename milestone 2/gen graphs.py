@@ -1,4 +1,4 @@
-NAME = "AIMD vayu"
+NAME = "Burst Size 10 Local Server"
 import pickle
 
 import matplotlib.pyplot as plt
